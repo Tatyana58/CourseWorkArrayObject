@@ -7,7 +7,7 @@ import java.util.Arrays;
  *     3. Добавить в класс Employee поле id, которое проставляется из счетчика, а затем счетчик увеличивает свое значение.
  *     4. Добавить возможность получать значения полей из Employee (геттеры) для всех полей.
  *     5. Добавить возможность устанавливать значения полей отдела и зарплаты (сеттеры).
- *     6. По умолчанию все поля должны передавать через конструктор (кроме id) изаполняться в нем (включая id, который нужно получить из счетчика).
+ *     6. По умолчанию все поля должны передавать через конструктор (кроме id) и заполняться в нем (включая id, который нужно получить из счетчика).
  *     7. Создать внутри класса с методом main поле типа Employee[10], которое будет выполнять роль «хранилища» для записей о сотрудниках.
  *     8. Создать статические методы, которые будут взаимодействовать с массивом и предоставлять результат:
  *         1. Получить список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
@@ -18,24 +18,18 @@ import java.util.Arrays;
  *         6. Получить Ф. И. О. всех сотрудников (вывести в консоль).
  *
  *         - **Критерии оценки**
- *
  *             – Корректно создан класс Employee.
- *
- *             –Реализованы геттеры для всех полей класса.
- *
+ *             – Реализованы геттеры для всех полей класса.
  *             – Реализованы сеттеры для всех полей класса.
- *
  *             – Создано поле типа Employee[10] для хранения записей о сотрудниках.
- *
  *             – Созданы методы, которые корректно выводят информацию:
- *
  *             - список всех сотрудников со всеми данными,
  *             - поиск сотрудника с минимальной зарплатой,
  *             - поиск сотрудника с максимальной зарплатой,
  *             - подсчет среднего значения зарплат,
  *             - список Ф. И. О. всех сотрудников.
  *
- *             – Программа работает корректно при изменении любых данных о сотрудниках и выводит верный результат.
+ *             – Программа работает корректно при изменении любых данных о сотрудниках и выводит верный результат.
  */
 public class Main {
     static double sumAll=0;
@@ -57,8 +51,10 @@ public class Main {
         printData(sumWages(collegue));
         printData(minWages(collegue));
         printData(maxWages(collegue));
-        printData(sumAll/ collegue.length);
+        printData(averageSumWages(collegue));
+        printCollegue(collegue);
     }
+
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
     public static String printInfo(Employee[] collegue) {
         for (int i=0; i < collegue.length; i++) {
@@ -76,7 +72,7 @@ public class Main {
         return sum;
     }
 
-    //Найти сотрудника с минимальной зарплатой.
+    //Поиск сотрудника с минимальной зарплатой.
     public static double minWages (Employee[] collegue) {
         double min = collegue[0].getWages();
         for (int i = 0; i < collegue.length; i++) {
@@ -87,6 +83,8 @@ public class Main {
         System.out.print("Минимальная заработная плата: ");
         return min;
     }
+
+    //Поиск сотрудника с максимальной зарплатой.
     public static double maxWages (Employee[] collegue) {
         double max = collegue[0].getWages();
         for (int i = 0; i < collegue.length; i++) {
@@ -97,12 +95,25 @@ public class Main {
         System.out.print("Максимальная заработная плата: ");
         return max;
     }
+
+    //Поиск среднего значения зарплат:
+    public static double averageSumWages(Employee[] collegue) {
+        sumAll=sumAll/ collegue.length;
+        System.out.print("Среднее значение зарплат: ");
+        return sumAll;
+    }
+    //Печать списка Ф. И. О. всех сотрудников.
+    public static String printCollegue(Employee[] collegue){
+        System.out.println("Список Ф.И.О сотрудников ");
+        for (int i = 0; i < collegue.length; i++) {
+            System.out.println(""+collegue[i].getSurname()+""+collegue[i].getName()+""+collegue[i].getPatronymic());
+        }
+        return "";
+    }
+
     //Печать данных
     public static double printData(double data) {
         System.out.println(data);
         return data;
     }
-
-    //
-
 }
