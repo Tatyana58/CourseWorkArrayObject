@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * - **Базовая сложность**
  *     1. Создать класс Employee, который содержит информацию о Ф.И.O., отделе и зарплате сотрудника. Отделы для простоты должны быть названы от 1 до 5.
@@ -51,5 +53,17 @@ public class Main {
         collegue[9] = new Employee("Гречав ", "Максим ", "Павлович ", 4, 6000);
 
 
+        sumWages(collegue);
+        System.out.println("Сумма средней зарплаты: "+sumWages(collegue)/collegue.length);
     }
+
+    //Сумму затрат на зарплаты
+    public static double sumWages(Employee[] collegue) {
+        double sum = 0;
+        for (int i = 0; i < collegue.length ; i++) {
+            sum += collegue[i].getWages();
+        }System.out.println("Сумму затрат на зарплаты " + sum);
+        return sum;
+    }
+
 }
