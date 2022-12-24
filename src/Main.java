@@ -53,6 +53,9 @@ public class Main {
         printData(maxWages(collegue));
         printData(averageSumWages(collegue));
         printCollegue(collegue);
+        changesDepartment(collegue,7,1);
+        printInfo(collegue);
+
     }
 
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
@@ -110,6 +113,12 @@ public class Main {
             System.out.println("" + collegue[i].getSurname().toUpperCase() + "" + collegue[i].getName().toUpperCase() + "" + collegue[i].getPatronymic().toUpperCase());
         }
         return "";
+    }
+
+    //Замена номера отдела
+    public static void changesDepartment(Employee[] collegue,int id, int x) {
+        collegue[id].setDepartment(x);
+        return;
     }
 
     //Печать данных
