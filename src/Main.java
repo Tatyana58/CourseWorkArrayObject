@@ -54,8 +54,7 @@ public class Main {
         printData(averageSumWages(collegue));
         printCollegue(collegue);
         changesDepartment(collegue,7,1);
-        printInfo(collegue);
-
+        changesWages(collegue,1,50000);
     }
 
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
@@ -115,10 +114,16 @@ public class Main {
         return "";
     }
 
-    //Замена номера отдела
+    //Замена номера отдела по id
     public static void changesDepartment(Employee[] collegue,int id, int x) {
         collegue[id].setDepartment(x);
-        return;
+        System.out.println("Изменили отдел сотруднику: " + collegue[id]);
+    }
+
+    //Изменение заработной платы по id
+    public static void changesWages(Employee[] collegue,int id, double x) {
+        collegue[id].setWages(x);
+        System.out.println("Изменили заработную плату сотруднику: " + collegue[id]);
     }
 
     //Печать данных
