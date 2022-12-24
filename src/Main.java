@@ -33,7 +33,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Курсовая работа 1");
         Employee[] collegue = new Employee[10];
-        collegue[0] = new Employee("Иванов ", "Дмитрий ", "Иванович ", 1, 4000);
+        collegue[0] = new Employee("Иванов ", "Дмитрий ", "Иванович ", 5, 4000);
         collegue[1] = new Employee("Сидоров ", "Сергей ", "Петрович ", 2, 1000);
         collegue[2] = new Employee("Лаврова ", "Любовь ", "Васильевна ", 4, 7000);
         collegue[3] = new Employee("Макеев ", "Александр ", "Андреевич ", 3, 2000);
@@ -52,7 +52,7 @@ public class Main {
         printCollegue(collegue);
         changesDepartment(collegue,7,1);
         changesWages(collegue,1,50000);
-        searchCollegueDepartment(collegue,4);
+        searchCollegueDepartment(collegue,5);
         searchCollegueId(collegue,2);
         indexWages(collegue,3);
     }
@@ -76,25 +76,30 @@ public class Main {
 
     //Поиск сотрудника с минимальной зарплатой.
     public static double minWages (Employee[] collegue) {
+        int index = 0;
         double min = collegue[0].getWages();
         for (int i = 0; i < collegue.length; i++) {
             if (collegue[i].getWages() < min) {
                 min=collegue[i].getWages();
+                index=i;
             }
         }
-        System.out.print("Минимальная заработная плата: ");
+        System.out.print("Минимальная заработная плата у сотрудника : " + collegue[index].getSurname() + "" + collegue[index].getName() + "" + collegue[index].getPatronymic() + " - ");
         return min;
     }
 
     //Поиск сотрудника с максимальной зарплатой.
     public static double maxWages (Employee[] collegue) {
+        int indexMax = 0;
         double max = collegue[0].getWages();
         for (int i = 0; i < collegue.length; i++) {
             if (collegue[i].getWages() > max) {
                 max = collegue[i].getWages();
+                indexMax=i;
             }
+            //System.out.print("Максимальная заработная плата у сотрудника :" + collegue[indexMax].getSurname() + "" + collegue[indexMax].getName() + "" + collegue[indexMax].getPatronymic() + " - ");
         }
-        System.out.print("Максимальная заработная плата: ");
+        System.out.print("Максимальная заработная плата у сотрудника :" + collegue[indexMax].getSurname() + "" + collegue[indexMax].getName() + "" + collegue[indexMax].getPatronymic() + " - ");
         return max;
     }
 
@@ -126,11 +131,16 @@ public class Main {
         System.out.println("Изменили заработную плату сотруднику: " + collegue[id]);
     }
 
-    //Поиск сотрудника по отделу
+    //Поиск сотрудников по отделу
     public static String searchCollegueDepartment(Employee[] collegue, int x) {
         for (int i = 0; i < collegue.length; i++) {
-            if (collegue[i].getDepartment() == x) {
-                System.out.println("В отделе " + x + " работает сотрудник " + collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic());
+            if (collegue[i].getDepartment() < 6 && collegue[i].getDepartment() >0 ) {
+                if (collegue[i].getDepartment() == x) {
+                    System.out.println("В отделе " + x + " работает сотрудник " + collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic());
+                }
+            }else {
+                System.out.println("Такого отдела не существует. Введите правильной номер отдела.");
+                return "";
             }
         }
         return "";
