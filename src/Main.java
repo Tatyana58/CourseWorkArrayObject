@@ -52,12 +52,18 @@ public class Main {
         collegue[8] = new Employee("Саркисьян ", "Лариса ", "Михайловна ", 4, 300.50);
         collegue[9] = new Employee("Гречав ", "Максим ", "Павлович ", 4, 6000);
 
-
+        printInfo(collegue);
         sumWages(collegue);
         System.out.println("Сумма средней зарплаты: "+sumWages(collegue)/collegue.length);
     }
+    // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
+    public static String printInfo(Employee[] collegue) {
+        for (int i=0; i < collegue.length; i++) {
+            System.out.println("Сотрудник № " + i + " " + collegue[i]);
+        }return ""+collegue;
+    }
 
-    //Сумму затрат на зарплаты
+    //Сумму затрат на зарплаты в месяц.
     public static double sumWages(Employee[] collegue) {
         double sum = 0;
         for (int i = 0; i < collegue.length ; i++) {
