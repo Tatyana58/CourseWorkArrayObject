@@ -30,6 +30,9 @@ import java.util.Arrays;
  */
 public class Main {
     static double sumAll=0;
+    static double sumAllDepartment=0;
+    static int indexCollegueDepartment = 0;
+    static int numerDepartment = 0;
     public static void main(String[] args) {
         System.out.println("Курсовая работа 1");
         Employee[] collegue = new Employee[10];
@@ -55,7 +58,8 @@ public class Main {
         searchCollegueDepartment(collegue,5);
         searchCollegueId(collegue,2);
         indexWages(collegue,3);
-        sumWagesMonth(collegue,4);
+        sumWagesMonthDepartment(collegue,4);
+        averageSumWagesDepartment(collegue,5);
     }
 
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
@@ -70,7 +74,8 @@ public class Main {
         double sum = 0;
         for (int i = 0; i < collegue.length ; i++) {
             sum += collegue[i].getWages();
-        }System.out.print("Сумма затрат на зарплаты ");
+        }
+        System.out.print("Сумма затрат на зарплаты ");
         sumAll=sum;
         return sum;
     }
@@ -169,14 +174,15 @@ public class Main {
     }
 
     //Сумму затрат на зарплаты в месяц по отделу.
-    public static double sumWagesMonth(Employee[] collegue,int x) {
+    public static double sumWagesMonthDepartment(Employee[] collegue,int x) {
+        indexCollegueDepartment=0;
         double sum = 0;
-        int index= 0;
             if (x < 6 && x > 0) {
                 for (int i = 0; i < collegue.length; i++) {
                     if (collegue[i].getDepartment() == x) {
                         sum += collegue[i].getWages();
-                        sumAll = sum;
+                        sumAllDepartment = sum;
+                        indexCollegueDepartment++;
                     }
                 }
                 System.out.println("Сумма затрат на зарплаты в отделе " + x +" = "+ sum);
@@ -186,6 +192,15 @@ public class Main {
                 return sum;
             }
         return sum;
+    }
+
+    //Среднюю зарплату по отделу (учесть, что количество людей в отделе отличается от employees.length).
+    public static double averageSumWagesDepartment(Employee[] collegue,int z) {
+        sumWagesMonthDepartment(collegue,z);
+        double averageSumAllDepartment = 0;
+        averageSumAllDepartment=sumAllDepartment/indexCollegueDepartment;
+        System.out.println("Средняя зарплата по отделу " + z + " = " + + averageSumAllDepartment);
+        return averageSumAllDepartment;
     }
 
     //Печать данных
