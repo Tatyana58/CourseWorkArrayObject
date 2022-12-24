@@ -56,6 +56,7 @@ public class Main {
         printInfo(collegue);
         printData(sumWages(collegue));
         printData(minWages(collegue));
+        printData(maxWages(collegue));
         printData(sumAll/ collegue.length);
     }
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
@@ -86,11 +87,22 @@ public class Main {
         System.out.print("Минимальная заработная плата: ");
         return min;
     }
+    public static double maxWages (Employee[] collegue) {
+        double max = collegue[0].getWages();
+        for (int i = 0; i < collegue.length; i++) {
+            if (collegue[i].getWages() > max) {
+                max=collegue[i].getWages();
+            }
+        }
+        System.out.print("Максимальная заработная плата: ");
+        return max;
+    }
     //Печать данных
     public static double printData(double data) {
         System.out.println(data);
         return data;
     }
 
+    //
 
 }
