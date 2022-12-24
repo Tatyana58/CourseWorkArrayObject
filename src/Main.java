@@ -55,6 +55,7 @@ public class Main {
         searchCollegueDepartment(collegue,5);
         searchCollegueId(collegue,2);
         indexWages(collegue,3);
+        sumWagesMonth(collegue,4);
     }
 
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
@@ -165,6 +166,26 @@ public class Main {
             System.out.println("Индексация зп на " + x + " %  сотруднику : "+ collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic() + " зп = " + collegue[i].getWages());
         }
         return y;
+    }
+
+    //Сумму затрат на зарплаты в месяц по отделу.
+    public static double sumWagesMonth(Employee[] collegue,int x) {
+        double sum = 0;
+        int index= 0;
+            if (x < 6 && x > 0) {
+                for (int i = 0; i < collegue.length; i++) {
+                    if (collegue[i].getDepartment() == x) {
+                        sum += collegue[i].getWages();
+                        sumAll = sum;
+                    }
+                }
+                System.out.println("Сумма затрат на зарплаты в отделе " + x +" = "+ sum);
+            }
+            else {
+                System.out.println("Такого отдела не существует. Введите правильной номер отдела.");
+                return sum;
+            }
+        return sum;
     }
 
     //Печать данных
