@@ -55,6 +55,8 @@ public class Main {
         printCollegue(collegue);
         changesDepartment(collegue,7,1);
         changesWages(collegue,1,50000);
+        searchCollegueDepartment(collegue,4);
+        searchCollegueId(collegue,2);
     }
 
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
@@ -124,6 +126,26 @@ public class Main {
     public static void changesWages(Employee[] collegue,int id, double x) {
         collegue[id].setWages(x);
         System.out.println("Изменили заработную плату сотруднику: " + collegue[id]);
+    }
+
+    //Поиск сотрудника по отделу
+    public static String searchCollegueDepartment(Employee[] collegue, int x) {
+        for (int i = 0; i < collegue.length; i++) {
+            if (collegue[i].getDepartment() == x) {
+                System.out.println("В отделе " + x + " работает сотрудник " + collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic());
+            }
+        }
+        return "";
+    }
+
+    //Поиск сотрудника по id
+    public static String searchCollegueId(Employee[] collegue, int x) {
+        for (int i = 0; i < collegue.length; i++) {
+            if (collegue[i].getId() == x) {
+                System.out.println("Сотрудник с ID " + x + " - " + collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic());
+            }
+        }
+        return "";
     }
 
     //Печать данных
