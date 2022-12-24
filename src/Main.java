@@ -42,7 +42,7 @@ public class Main {
         collegue[3] = new Employee("Макеев ", "Александр ", "Андреевич ", 3, 2000);
         collegue[4] = new Employee("Юдина ", "Ольга ", "Борисовна ", 1, 3000);
         collegue[5] = new Employee("Сергеев ", "Юрий ", "Витальевич ", 5, 5000);
-        collegue[6] = new Employee("Силантьева ", "ЕКатерина ", "Анатольевна ", 4, 80000);
+        collegue[6] = new Employee("Силантьева ", "Екатерина ", "Анатольевна ", 4, 80000);
         collegue[7] = new Employee("Криулина ", "Евгения ", "Валерьевна ", 4, 15000);
         collegue[8] = new Employee("Саркисьян ", "Лариса ", "Михайловна ", 4, 300.50);
         collegue[9] = new Employee("Гречав ", "Максим ", "Павлович ", 4, 6000);
@@ -89,7 +89,7 @@ public class Main {
         double max = collegue[0].getWages();
         for (int i = 0; i < collegue.length; i++) {
             if (collegue[i].getWages() > max) {
-                max=collegue[i].getWages();
+                max = collegue[i].getWages();
             }
         }
         System.out.print("Максимальная заработная плата: ");
@@ -102,11 +102,12 @@ public class Main {
         System.out.print("Среднее значение зарплат: ");
         return sumAll;
     }
+
     //Печать списка Ф. И. О. всех сотрудников.
     public static String printCollegue(Employee[] collegue){
         System.out.println("Список Ф.И.О сотрудников ");
         for (int i = 0; i < collegue.length; i++) {
-            System.out.println(""+collegue[i].getSurname()+""+collegue[i].getName()+""+collegue[i].getPatronymic());
+            System.out.println("" + collegue[i].getSurname().toUpperCase() + "" + collegue[i].getName().toUpperCase() + "" + collegue[i].getPatronymic().toUpperCase());
         }
         return "";
     }
