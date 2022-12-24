@@ -47,19 +47,21 @@ public class Main {
         collegue[8] = new Employee("Саркисьян ", "Лариса ", "Михайловна ", 4, 300.50);
         collegue[9] = new Employee("Гречав ", "Максим ", "Павлович ", 4, 6000);
 
-        printInfo(collegue);
-        printData(sumWages(collegue));
-        printData(minWages(collegue));
-        printData(maxWages(collegue));
-        printData(averageSumWages(collegue));
-        printCollegue(collegue);
-        changesDepartment(collegue,7,1);
-        changesWages(collegue,1,50000);
-        searchCollegueDepartment(collegue,5);
-        searchCollegueId(collegue,2);
-        indexWages(collegue,3);
-        sumWagesMonthDepartment(collegue,4);
-        averageSumWagesDepartment(collegue,5);
+        printInfo(collegue);                                    //Список всех сотрудников со всеми имеющимися по ним данными
+        printData(sumWages(collegue));                          //Сумму затрат на зарплаты в месяц.
+        printData(minWages(collegue));                          //Поиск сотрудника с минимальной зарплатой.
+        printData(maxWages(collegue));                          //Поиск сотрудника с максимальной зарплатой.
+        printData(averageSumWages(collegue));                   //Поиск среднего значения зарплат:
+        printCollegue(collegue);                                //Печать списка Ф. И. О. всех сотрудников.
+        changesDepartment(collegue,7,1);           //Замена номера отдела по id
+        changesWages(collegue,1,50000);               //Изменение заработной платы по id
+        searchCollegueDepartment(collegue,5);         //Поиск сотрудников по отделу
+        searchCollegueId(collegue,2);                        //Поиск сотрудника по id
+        indexWages(collegue,3);                          //Индексация заработной платы в %
+        sumWagesMonthDepartment(collegue,4);          //Сумму затрат на зарплаты в месяц по отделу.
+        averageSumWagesDepartment(collegue,5);        //Среднюю зарплату по отделу (учесть, что количество людей в отделе отличается от employees.length).
+        percentWagesDepartment(collegue,4,2);  //Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра.
+
     }
 
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
@@ -126,23 +128,23 @@ public class Main {
     }
 
     //Замена номера отдела по id
-    public static void changesDepartment(Employee[] collegue,int id, int x) {
-        collegue[id].setDepartment(x);
+    public static void changesDepartment(Employee[] collegue,int id, int department) {
+        collegue[id].setDepartment(department);
         System.out.println("Изменили отдел сотруднику: " + collegue[id]);
     }
 
     //Изменение заработной платы по id
-    public static void changesWages(Employee[] collegue,int id, double x) {
-        collegue[id].setWages(x);
+    public static void changesWages(Employee[] collegue,int id, double percent) {
+        collegue[id].setWages(percent);
         System.out.println("Изменили заработную плату сотруднику: " + collegue[id]);
     }
 
     //Поиск сотрудников по отделу
-    public static String searchCollegueDepartment(Employee[] collegue, int x) {
+    public static String searchCollegueDepartment(Employee[] collegue, int department) {
         for (int i = 0; i < collegue.length; i++) {
-            if (collegue[i].getDepartment() < 6 && collegue[i].getDepartment() >0 ) {
-                if (collegue[i].getDepartment() == x) {
-                    System.out.println("В отделе " + x + " работает сотрудник " + collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic());
+            if (department < 6 && department >0 ) {
+                if (collegue[i].getDepartment() == department) {
+                    System.out.println("В отделе " + department + " работает сотрудник " + collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic());
                 }
             }else {
                 System.out.println("Такого отдела не существует. Введите правильной номер отдела.");
@@ -153,39 +155,39 @@ public class Main {
     }
 
     //Поиск сотрудника по id
-    public static String searchCollegueId(Employee[] collegue, int x) {
+    public static String searchCollegueId(Employee[] collegue, int id) {
         for (int i = 0; i < collegue.length; i++) {
-            if (collegue[i].getId() == x) {
-                System.out.println("Сотрудник с ID " + x + " - " + collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic());
+            if (collegue[i].getId() == id) {
+                System.out.println("Сотрудник с ID " + id + " - " + collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic());
             }
         }
         return "";
     }
 
     //Индексация заработной платы в %
-    public static double indexWages(Employee[] collegue, int x) { //x- процент увеличения зп
+    public static double indexWages(Employee[] collegue, int percent) { //x- процент увеличения зп
         double y = 0d;
         for (int i=0; i < collegue.length; i++) {
-            y =collegue[i].getWages()+ collegue[i].getWages() * x / 100;
+            y =collegue[i].getWages()+ collegue[i].getWages() * percent / 100;
             collegue[i].setWages(y);
-            System.out.println("Индексация зп на " + x + " %  сотруднику : "+ collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic() + " зп = " + collegue[i].getWages());
+            System.out.println("Индексация зп на " + percent + " %  сотруднику : "+ collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic() + " зп = " + collegue[i].getWages());
         }
         return y;
     }
 
     //Сумму затрат на зарплаты в месяц по отделу.
-    public static double sumWagesMonthDepartment(Employee[] collegue,int x) {
+    public static double sumWagesMonthDepartment(Employee[] collegue,int department) {
         indexCollegueDepartment=0;
         double sum = 0;
-            if (x < 6 && x > 0) {
+            if (department < 6 && department > 0) {
                 for (int i = 0; i < collegue.length; i++) {
-                    if (collegue[i].getDepartment() == x) {
+                    if (collegue[i].getDepartment() == department) {
                         sum += collegue[i].getWages();
                         sumAllDepartment = sum;
                         indexCollegueDepartment++;
                     }
                 }
-                System.out.println("Сумма затрат на зарплаты в отделе " + x +" = "+ sum);
+                System.out.println("Сумма затрат на зарплаты в отделе " + department +" = "+ sum);
             }
             else {
                 System.out.println("Такого отдела не существует. Введите правильной номер отдела.");
@@ -195,13 +197,32 @@ public class Main {
     }
 
     //Среднюю зарплату по отделу (учесть, что количество людей в отделе отличается от employees.length).
-    public static double averageSumWagesDepartment(Employee[] collegue,int z) {
-        sumWagesMonthDepartment(collegue,z);
+    public static double averageSumWagesDepartment(Employee[] collegue,int department) {
+        sumWagesMonthDepartment(collegue,department);
         double averageSumAllDepartment = 0;
         averageSumAllDepartment=sumAllDepartment/indexCollegueDepartment;
-        System.out.println("Средняя зарплата по отделу " + z + " = " + + averageSumAllDepartment);
+        System.out.println("Средняя зарплата по отделу " + department + " = " + + averageSumAllDepartment);
         return averageSumAllDepartment;
     }
+
+    //Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра.
+    public static double percentWagesDepartment(Employee[] collegue, int department,int percent){
+        double y=0;
+            if (department > 0 && department < 6) {
+                for (int i = 0; i <collegue.length; i++) {
+                    if (collegue[i].getDepartment() == department) {
+                        y = collegue[i].getWages() + collegue[i].getWages() * percent / 100;
+                        collegue[i].setWages(y);
+                        System.out.println("Индексация зп на " + percent + " %  сотруднику : " + collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic() + " зп = " + collegue[i].getWages());
+                    }
+                }
+            }else {
+                System.out.println("Такого отдела не существует. Введите правильной номер отдела.");
+                return y;
+            }
+        return y;
+    }
+
 
     //Печать данных
     public static double printData(double data) {
