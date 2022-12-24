@@ -38,6 +38,7 @@ import java.util.Arrays;
  *             – Программа работает корректно при изменении любых данных о сотрудниках и выводит верный результат.
  */
 public class Main {
+    static double sumAll=0;
     public static void main(String[] args) {
         System.out.println("Курсовая работа 1");
         Employee[] collegue = new Employee[10];
@@ -53,8 +54,9 @@ public class Main {
         collegue[9] = new Employee("Гречав ", "Максим ", "Павлович ", 4, 6000);
 
         printInfo(collegue);
-        sumWages(collegue);
-        System.out.println("Сумма средней зарплаты: "+sumWages(collegue)/collegue.length);
+        printData(sumWages(collegue));
+        printData(minWages(collegue));
+        printData(sumAll/ collegue.length);
     }
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
     public static String printInfo(Employee[] collegue) {
@@ -68,8 +70,27 @@ public class Main {
         double sum = 0;
         for (int i = 0; i < collegue.length ; i++) {
             sum += collegue[i].getWages();
-        }System.out.println("Сумму затрат на зарплаты " + sum);
+        }System.out.print("Сумма затрат на зарплаты ");
+        sumAll=sum;
         return sum;
     }
+
+    //Найти сотрудника с минимальной зарплатой.
+    public static double minWages (Employee[] collegue) {
+        double min = collegue[0].getWages();
+        for (int i = 0; i < collegue.length; i++) {
+            if (collegue[i].getWages() < min) {
+                min=collegue[i].getWages();
+            }
+        }
+        System.out.print("Минимальная заработная плата: ");
+        return min;
+    }
+    //Печать данных
+    public static double printData(double data) {
+        System.out.println(data);
+        return data;
+    }
+
 
 }
