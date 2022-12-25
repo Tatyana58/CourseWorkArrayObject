@@ -61,8 +61,8 @@ public class Main {
         sumWagesMonthDepartment(collegue,4);          //Сумму затрат на зарплаты в месяц по отделу.
         averageSumWagesDepartment(collegue,5);        //Среднюю зарплату по отделу (учесть, что количество людей в отделе отличается от employees.length).
         percentWagesDepartment(collegue,4,2);  //Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра.
-        minWagesDepartment(collegue,4);               //Поиск сотрудника с минимальной зарплатой.
-        maxWagesDepartment(collegue,4);               //Поиск сотрудника с максимальной зарплатой.
+        minWagesDepartment(collegue,4);               //Поиск сотрудника с минимальной зарплатой в отделе.
+        maxWagesDepartment(collegue,4);               //Поиск сотрудника с максимальной зарплатой в отделе.
     }
 
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
@@ -228,12 +228,12 @@ public class Main {
         int index = 0;
         double min = collegue[0].getWages();
         for (int i = 0; i < collegue.length; i++) {
-            if (collegue[i].getWages() < min && collegue[i].getDepartment() == 4) {
+            if (collegue[i].getWages() < min && collegue[i].getDepartment() == department) {
                 min = collegue[i].getWages();
                 index = i;
             }
         }
-        System.out.println("Минимальная заработная плата у сотрудника : " + collegue[index].getSurname() + "" + collegue[index].getName() + "" + collegue[index].getPatronymic() + " - "+min);
+        System.out.println("Минимальная заработная плата у сотрудника : " + collegue[index].getSurname() + "" + collegue[index].getName() + "" + collegue[index].getPatronymic() + " - "+Math.round(min));
         return min;
     }
 
@@ -242,12 +242,12 @@ public class Main {
         int index = 0;
         double max = collegue[0].getWages();
         for (int i = 0; i < collegue.length; i++) {
-            if (collegue[i].getWages() > max && collegue[i].getDepartment() == 4) {
+            if (collegue[i].getWages() > max && collegue[i].getDepartment() == department) {
                 max = collegue[i].getWages();
                 index = i;
             }
         }
-        System.out.println("Максимальная заработная плата у сотрудника : " + collegue[index].getSurname() + "" + collegue[index].getName() + "" + collegue[index].getPatronymic() + " - "+max);
+        System.out.println("Максимальная заработная плата у сотрудника : " + collegue[index].getSurname() + "" + collegue[index].getName() + "" + collegue[index].getPatronymic() + " - "+Math.round(max));
         return max;
     }
 
