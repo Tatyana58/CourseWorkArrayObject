@@ -48,21 +48,21 @@ public class Main {
         collegue[9] = new Employee("Гречав ", "Максим ", "Павлович ", 4, 6000);
 
         printInfo(collegue);                                    //Список всех сотрудников со всеми имеющимися по ним данными
-        printData(sumWages(collegue));                          //Сумму затрат на зарплаты в месяц
-        printData(minWages(collegue));                          //Поиск сотрудника с минимальной зарплатой
-        printData(maxWages(collegue));                          //Поиск сотрудника с максимальной зарплатой
-        printData(averageSumWages(collegue));                   //Поиск среднего значения зарплат всех работников
-        printCollegue(collegue);                                //Печать списка Ф. И. О. всех сотрудников.
-        changesDepartment(collegue,7,1);           //Замена номера отдела по id
-        changesWages(collegue,1,50000);               //Изменение заработной платы по id
-        searchCollegueDepartment(collegue,5);         //Поиск и печать сотрудников по отделу
-        searchCollegueId(collegue,2);                        //Поиск и печать сотрудника по id
-        indexWages(collegue,3);                          //Индексация заработной платы в % всех работников
-        sumWagesMonthDepartment(collegue,4);          //Сумму затрат на зарплаты в месяц по отделу.
-        averageSumWagesDepartment(collegue,5);        //Среднюю зарплату по отделу (учесть, что количество людей в отделе отличается от employees.length).
-        percentWagesDepartment(collegue,4,2);  //Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра.
-        minWagesDepartment(collegue,4);               //Поиск сотрудника с минимальной зарплатой в отделе.
-        maxWagesDepartment(collegue,4);               //Поиск сотрудника с максимальной зарплатой в отделе.
+        //printData(sumWages(collegue));                          //Сумму затрат на зарплаты в месяц
+        //printData(minWages(collegue));                          //Поиск сотрудника с минимальной зарплатой
+        //printData(maxWages(collegue));                          //Поиск сотрудника с максимальной зарплатой
+        //printData(averageSumWages(collegue));                   //Поиск среднего значения зарплат всех работников
+        //printCollegue(collegue);                                //Печать списка Ф. И. О. всех сотрудников.
+        //changesDepartment(collegue,7,1);           //Замена номера отдела по id
+       // changesWages(collegue,0,5000);                //Изменение заработной платы по id
+        //searchCollegueDepartment(collegue,5);         //Поиск и печать сотрудников по отделу
+       // searchCollegueId(collegue,2);                        //Поиск и печать сотрудника по id
+        //indexWages(collegue,3);                          //Индексация заработной платы в % всех работников
+        //sumWagesMonthDepartment(collegue,4);          //Сумму затрат на зарплаты в месяц по отделу.
+        //averageSumWagesDepartment(collegue,5);        //Среднюю зарплату по отделу (учесть, что количество людей в отделе отличается от employees.length).
+       // percentWagesDepartment(collegue,4,1);  //Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра.
+       // minWagesDepartment(collegue,5);               //Поиск сотрудника с минимальной зарплатой в отделе.
+        maxWagesDepartment(collegue,5);               //Поиск сотрудника с максимальной зарплатой в отделе.
     }
 
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
@@ -218,36 +218,57 @@ public class Main {
                 }
             }else {
                 System.out.println("Такого отдела не существует. Введите правильной номер отдела.");
-                return y;
             }
-        return y;
+            return y;
     }
 
     //Поиск сотрудника с минимальной зарплатой в отделе.
     public static double minWagesDepartment (Employee[] collegue,int department) {
         int index = 0;
-        double min = collegue[0].getWages();
-        for (int i = 0; i < collegue.length; i++) {
-            if (collegue[i].getWages() < min && collegue[i].getDepartment() == department) {
-                min = collegue[i].getWages();
-                index = i;
+        double min = 0;
+        if (department>0 && department<6) {
+            for (int j = 0; j < collegue.length; j++) {
+                if (collegue[j].getWages() > 0 && collegue[j].getDepartment() == department) {
+                    min = collegue[j].getWages();
+                    break;
+                }
             }
+            for (int i = 0; i < collegue.length; i++) {
+                if (collegue[i].getWages() <= min && collegue[i].getDepartment() == department) {
+                    min = collegue[i].getWages();
+                    index = i;
+                }
+            }
+            System.out.println("Минимальная заработная плата у сотрудника в отделе " + index + ": " + collegue[index].getSurname() + "" + collegue[index].getName() + "" + collegue[index].getPatronymic() + " - " + Math.round(min));
+            return min;
+        }else {
+            System.out.println("Такого отдела не существует. Введите правильной номер отдела.");
         }
-        System.out.println("Минимальная заработная плата у сотрудника : " + collegue[index].getSurname() + "" + collegue[index].getName() + "" + collegue[index].getPatronymic() + " - "+Math.round(min));
         return min;
     }
 
-    //Поиск сотрудника с максимальной зарплатой.
+    //Поиск сотрудника с максимальной зарплатой в отделе
     public static double maxWagesDepartment (Employee[] collegue,int department) {
         int index = 0;
-        double max = collegue[0].getWages();
-        for (int i = 0; i < collegue.length; i++) {
-            if (collegue[i].getWages() > max && collegue[i].getDepartment() == department) {
-                max = collegue[i].getWages();
-                index = i;
+        double max = 0;
+        if (department>0 && department<6) {
+            for (int j = 0; j < collegue.length; j++) {
+                if (collegue[j].getWages() > 0 && collegue[j].getDepartment() == department) {
+                    max = collegue[j].getWages();
+                    break;
+                }
             }
+            for (int i = 0; i < collegue.length; i++) {
+                if (collegue[i].getWages() >= max && collegue[i].getDepartment() == department) {
+                    max = collegue[i].getWages();
+                    index = i;
+                }
+            }
+            System.out.println("Максимальная заработная плата у сотрудника в отделе " + index + ": " + collegue[index].getSurname() + "" + collegue[index].getName() + "" + collegue[index].getPatronymic() + " - " + Math.round(max));
+            return max;
+        }else {
+            System.out.println("Такого отдела не существует. Введите правильной номер отдела.");
         }
-        System.out.println("Максимальная заработная плата у сотрудника : " + collegue[index].getSurname() + "" + collegue[index].getName() + "" + collegue[index].getPatronymic() + " - "+Math.round(max));
         return max;
     }
 
