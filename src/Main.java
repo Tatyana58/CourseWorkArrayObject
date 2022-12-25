@@ -48,22 +48,23 @@ public class Main {
         collegue[9] = new Employee("Гречав ", "Максим ", "Павлович ", 4, 6000);
 
         printInfo(collegue);                                    //Список всех сотрудников со всеми имеющимися по ним данными
-        //printData(sumWages(collegue));                          //Сумму затрат на зарплаты в месяц
-        //printData(minWages(collegue));                          //Поиск сотрудника с минимальной зарплатой
-        //printData(maxWages(collegue));                          //Поиск сотрудника с максимальной зарплатой
-        //printData(averageSumWages(collegue));                   //Поиск среднего значения зарплат всех работников
-        //printCollegue(collegue);                                //Печать списка Ф. И. О. всех сотрудников.
-        //changesDepartment(collegue,7,1);           //Замена номера отдела по id
-       // changesWages(collegue,0,5000);                //Изменение заработной платы по id
-        //searchCollegueDepartment(collegue,5);         //Поиск и печать сотрудников по отделу
-       // searchCollegueId(collegue,2);                        //Поиск и печать сотрудника по id
-        //indexWages(collegue,3);                          //Индексация заработной платы в % всех работников
-        //sumWagesMonthDepartment(collegue,4);          //Сумму затрат на зарплаты в месяц по отделу.
-        //averageSumWagesDepartment(collegue,5);        //Среднюю зарплату по отделу (учесть, что количество людей в отделе отличается от employees.length).
-       // percentWagesDepartment(collegue,4,1);  //Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра.
-       // minWagesDepartment(collegue,5);               //Поиск сотрудника с минимальной зарплатой в отделе.
-       // maxWagesDepartment(collegue,5);               //Поиск сотрудника с максимальной зарплатой в отделе.
-        wagesLessMeaning(collegue,10000);
+        printData(sumWages(collegue));                          //Сумму затрат на зарплаты в месяц
+        printData(minWages(collegue));                          //Поиск сотрудника с минимальной зарплатой
+        printData(maxWages(collegue));                          //Поиск сотрудника с максимальной зарплатой
+        printData(averageSumWages(collegue));                   //Поиск среднего значения зарплат всех работников
+        printCollegue(collegue);                                //Печать списка Ф. И. О. всех сотрудников.
+        changesDepartment(collegue,7,1);           //Замена номера отдела по id
+        changesWages(collegue,0,5000);                //Изменение заработной платы по id
+        searchCollegueDepartment(collegue,5);         //Поиск и печать сотрудников по отделу
+        searchCollegueId(collegue,2);                        //Поиск и печать сотрудника по id
+        indexWages(collegue,3);                          //Индексация заработной платы в % всех работников
+        sumWagesMonthDepartment(collegue,4);          //Сумму затрат на зарплаты в месяц по отделу.
+        averageSumWagesDepartment(collegue,5);        //Среднюю зарплату по отделу (учесть, что количество людей в отделе отличается от employees.length).
+        percentWagesDepartment(collegue,4,1);  //Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра.
+        minWagesDepartment(collegue,5);               //Поиск сотрудника с минимальной зарплатой в отделе.
+        maxWagesDepartment(collegue,5);               //Поиск сотрудника с максимальной зарплатой в отделе.
+        wagesLessMeaning(collegue,10000);               //Поиск всех сотрудников с зарплатой меньше числа
+        wagesMoreMeaning(collegue,10000);               //Поиск всех сотрудников с зарплатой больше (или равно) числа
     }
 
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
@@ -273,19 +274,27 @@ public class Main {
         return max;
     }
 
-    //Всех сотрудников с зарплатой меньше числа (вывести id, Ф. И. О. и зарплатой в консоль).
+    //Поиск всех сотрудников с зарплатой меньше числа (вывести id, Ф. И. О. и зарплатой в консоль).
     public static String wagesLessMeaning(Employee[] collegue,double meaning) {
         System.out.println("");
-        System.out.println("Список сотрудников у кого заработная плата меньше " + meaning);
+        System.out.println("Список сотрудников у кого заработная плата меньше числа " + meaning);
         for (int i=0; i < collegue.length; i++) {
-            if (collegue[i].getWages()<meaning) {
+            if (collegue[i].getWages() < meaning) {
                 System.out.println("Сотрудник - " + collegue[i]);
             }
         }return ""+collegue;
     }
 
-
-
+    //Поиск всех сотрудников с зарплатой больше (или равно) числа (вывести id, Ф. И. О. и зарплатой в консоль).
+    public static String wagesMoreMeaning(Employee[] collegue,double meaning) {
+        System.out.println("");
+        System.out.println("Список сотрудников у кого заработная плата больше (или равна) числу  " + meaning);
+        for (int i=0; i < collegue.length; i++) {
+            if (collegue[i].getWages() >= meaning) {
+                System.out.println("Сотрудник - " + collegue[i]);
+            }
+        }return ""+collegue;
+    }
 
     //Печать данных
     public static double printData(double data) {
