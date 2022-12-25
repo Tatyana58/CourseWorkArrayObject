@@ -249,7 +249,7 @@ public class Main {
         return min;
     }
 
-    //Поиск сотрудника с максимальной зарплатой в отделе
+    //Поиск сотрудника с максимальной зарплатой в отделе.
     public static double maxWagesDepartment (Employee[] collegue,int department) {
         int index = 0;
         double max = 0;
