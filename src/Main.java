@@ -62,7 +62,8 @@ public class Main {
         //averageSumWagesDepartment(collegue,5);        //Среднюю зарплату по отделу (учесть, что количество людей в отделе отличается от employees.length).
        // percentWagesDepartment(collegue,4,1);  //Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра.
        // minWagesDepartment(collegue,5);               //Поиск сотрудника с минимальной зарплатой в отделе.
-        maxWagesDepartment(collegue,5);               //Поиск сотрудника с максимальной зарплатой в отделе.
+       // maxWagesDepartment(collegue,5);               //Поиск сотрудника с максимальной зарплатой в отделе.
+        wagesLessMeaning(collegue,10000);
     }
 
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
@@ -271,6 +272,20 @@ public class Main {
         }
         return max;
     }
+
+    //Всех сотрудников с зарплатой меньше числа (вывести id, Ф. И. О. и зарплатой в консоль).
+    public static String wagesLessMeaning(Employee[] collegue,double meaning) {
+        System.out.println("");
+        System.out.println("Список сотрудников у кого заработная плата меньше " + meaning);
+        for (int i=0; i < collegue.length; i++) {
+            if (collegue[i].getWages()<meaning) {
+                System.out.println("Сотрудник - " + collegue[i]);
+            }
+        }return ""+collegue;
+    }
+
+
+
 
     //Печать данных
     public static double printData(double data) {
