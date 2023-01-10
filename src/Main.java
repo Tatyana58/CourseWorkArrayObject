@@ -48,9 +48,11 @@ public class Main {
         collegue[9] = new Employee("Гречав ", "Максим ", "Павлович ", 4, 6000);
 
         printInfo(collegue);                                    //Список всех сотрудников со всеми имеющимися по ним данными
+        System.out.print("Сумма затрат на зарплаты ");
         printData(sumWages(collegue));                          //Сумму затрат на зарплаты в месяц
         printData(minWages(collegue));                          //Поиск сотрудника с минимальной зарплатой
         printData(maxWages(collegue));                          //Поиск сотрудника с максимальной зарплатой
+        System.out.print("Среднее значение зарплат: ");
         printData(averageSumWages(collegue));                   //Поиск среднего значения зарплат всех работников
         printCollegue(collegue);                                //Печать списка Ф. И. О. всех сотрудников.
         changesDepartment(collegue,7,1);           //Замена номера отдела по id
@@ -65,13 +67,16 @@ public class Main {
         maxWagesDepartment(collegue,5);               //Поиск сотрудника с максимальной зарплатой в отделе.
         wagesLessMeaning(collegue,10000);               //Поиск всех сотрудников с зарплатой меньше числа
         wagesMoreMeaning(collegue,10000);               //Поиск всех сотрудников с зарплатой больше (или равно) числа
+
+
     }
 
     // Список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
     public static String printInfo(Employee[] collegue) {
         for (int i=0; i < collegue.length; i++) {
             System.out.println("Сотрудник № " + i + " " + collegue[i]);
-        }return ""+collegue;
+        }
+        return ""+collegue;
     }
 
     //Сумму затрат на зарплаты в месяц.
@@ -80,7 +85,6 @@ public class Main {
         for (int i = 0; i < collegue.length ; i++) {
             sum += collegue[i].getWages();
         }
-        System.out.print("Сумма затрат на зарплаты ");
         sumAll=sum;
         return sum;
     }
@@ -115,18 +119,16 @@ public class Main {
 
     //Поиск среднего значения зарплат:
     public static double averageSumWages(Employee[] collegue) {
-        sumAll=sumAll/ collegue.length;
-        System.out.print("Среднее значение зарплат: ");
+        sumAll=sumWages(collegue)/ collegue.length;
         return sumAll;
     }
 
     //Печать списка Ф. И. О. всех сотрудников.
-    public static String printCollegue(Employee[] collegue){
+    public static void printCollegue(Employee[] collegue) {
         System.out.println("Список Ф.И.О всех сотрудников ");
         for (int i = 0; i < collegue.length; i++) {
             System.out.println("" + collegue[i].getSurname().toUpperCase() + "" + collegue[i].getName().toUpperCase() + "" + collegue[i].getPatronymic().toUpperCase());
         }
-        return "";
     }
 
     //Замена номера отдела по id
@@ -142,7 +144,7 @@ public class Main {
     }
 
     //Поиск сотрудников по отделу
-    public static String searchCollegueDepartment(Employee[] collegue, int department) {
+    public static void searchCollegueDepartment(Employee[] collegue, int department) {
         for (int i = 0; i < collegue.length; i++) {
             if (department < 6 && department >0 ) {
                 if (collegue[i].getDepartment() == department) {
@@ -150,20 +152,18 @@ public class Main {
                 }
             }else {
                 System.out.println("Такого отдела не существует. Введите правильной номер отдела.");
-                return "";
             }
         }
-        return "";
+
     }
 
     //Поиск сотрудника по id
-    public static String searchCollegueId(Employee[] collegue, int id) {
+    public static void searchCollegueId(Employee[] collegue, int id) {
         for (int i = 0; i < collegue.length; i++) {
             if (collegue[i].getId() == id) {
                 System.out.println("Сотрудник с ID " + id + " - " + collegue[i].getSurname() + "" + collegue[i].getName() + "" + collegue[i].getPatronymic());
             }
         }
-        return "";
     }
 
     //Индексация заработной платы в %
