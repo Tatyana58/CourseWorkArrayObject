@@ -285,7 +285,7 @@ public class Main {
         }return ""+collegue;
     }
 
-    //Поиск всех сотрудников с зарплатой больше (или равно) числа (вывести id, Ф. И. О. и зарплатой в консоль).
+    //Поиск всех сотрудников с зарплатой больше (или равно)  числа (вывести id, Ф. И. О. и зарплатой в консоль).
     public static String wagesMoreMeaning(Employee[] collegue,double meaning) {
         System.out.println("");
         System.out.println("Список сотрудников у кого заработная плата больше (или равна) числу  " + meaning);
